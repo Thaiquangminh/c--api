@@ -152,3 +152,7 @@ C:\workspace\api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivatio
 C:\workspace\api\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\workspace\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\workspace\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\workspace\api\obj\Debug\net8.0\api.sourcelink.json
+C:\workspace\api\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\workspace\api\bin\Debug\net8.0\AWSSDK.Extensions.NETCore.Setup.dll
+C:\workspace\api\bin\Debug\net8.0\AWSSDK.S3.dll

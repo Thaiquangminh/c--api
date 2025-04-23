@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bUMLRz6yN74=",
+  "dgSpecHash": "JVyBz0KP1e0=",
   "success": true,
   "projectFilePath": "C:\\workspace\\api\\api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Tuan\\.nuget\\packages\\awssdk.core\\3.7.402.43\\awssdk.core.3.7.402.43.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.400\\awssdk.extensions.netcore.setup.3.7.400.nupkg.sha512",
+    "C:\\Users\\Tuan\\.nuget\\packages\\awssdk.s3\\3.7.416.13\\awssdk.s3.3.7.416.13.nupkg.sha512",
     "C:\\Users\\Tuan\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Tuan\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\Tuan\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

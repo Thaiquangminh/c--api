@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Account;
+using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,13 @@ namespace api.controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
-
-        public AccountController(UserManager<AppUser> userManager)
+        private readonly ITokenService _tokenService;
+        private readonly SignInManager<AppUser> _signInManager;
+        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService, SignInManager<AppUser> signInManager)
         {
+            _tokenService = tokenService;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [HttpPost("register")]
@@ -38,7 +42,12 @@ namespace api.controllers
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                     if (roleResult.Succeeded)
                     {
-                        return Ok(new { message = "User registered successfully" });
+                        return Ok(new NewUserDto
+                        {
+                            UserName = appUser.UserName,
+                            Email = appUser.Email,
+                            Token = _tokenService.CreateToken(appUser)
+                        });
                     }
                     else
                     {
@@ -54,6 +63,26 @@ namespace api.controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var user = await _userManager.FindByNameAsync(loginDto.Username);
+
+            if (user == null) return Unauthorized(new { message = "Invalid username or password" });
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+            if (!result.Succeeded) return Unauthorized(new { message = "Invalid username or password" });
+
+            return Ok(new NewUserDto
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                Token = _tokenService.CreateToken(user)
+            });
         }
     }
 }
